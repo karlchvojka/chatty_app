@@ -1,5 +1,11 @@
+/******************/
+/* GLOBAL IMPORTS */
+/******************/
 import React, {Component} from 'react';
 
+/*********************/
+/* Message Component */
+/*********************/
 class Message extends Component {
   render () {
     return (

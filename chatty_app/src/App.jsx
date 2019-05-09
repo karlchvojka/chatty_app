@@ -1,8 +1,14 @@
+/******************/
+/* GLOBAL IMPORTS */
+/******************/
 import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 import NavBar from './navbar.jsx';
 
+/*****************/
+/* App Comonent */
+/*****************/
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,14 +29,18 @@ class App extends Component {
 
     this.socket.onmessage = (event) => {
       let msg = JSON.parse(event.data);
-      console.log('incoming', msg);
+
+      // Check Message Type, Set state appropriately.
       switch(msg.type) {
+
+        // Handle user count changes when user connects.
         case 'userCount':
         this.setState({ onlineUsers: msg.count});
         break;
+
+        // Handle an incoming message from chatbar.
         case "incomingMessage":
-          // handle incoming message
-          console.log('message', msg);
+          // Build message object.
           const newMessage = {
             type: 'incomingMessage',
             id: msg.id,
@@ -40,8 +50,10 @@ class App extends Component {
           const newMessages = this.state.messages.concat(msg);
           this.setState({messages: newMessages });
           break;
+
+        // Handle an incoming notification, only username changes for now.
         case "incomingNotification":
-          // handle incoming notification.
+          // Build notification object.
           const newNotification = {
             type: 'incomingNotification',
             username: msg.username,
@@ -58,31 +70,36 @@ class App extends Component {
     }
   }
 
+  /********************/
+  /* Helper Functions */
+  /********************/
+  // Check for Username Value
+  usernameCheck(input) {
+    let currentUser = '';
+    if (this.state.currentUser.name) {
+      currentUser = this.state.currentUser.name;
+    } else {
+      currentUser = "Anonymous";
+    }
+    return currentUser;
+  }
+
+  /* Functions as Props */
+  
   // Handle message input
   addMessageItem(input) {
-    let currentUser = '';
-    if (this.state.currentUser.name) {
-      currentUser = this.state.currentUser.name;
-    } else {
-      currentUser = "Anonymous";
+    let currentUser = this.usernameCheck(this.state.currentUser.name);
+    let msg = {
+      type: 'incomingMessage',
+      username: currentUser,
+      content: input
     }
-      let msg = {
-        type: 'incomingMessage',
-        username: currentUser,
-        content: input
-      }
-      this.socket.send(JSON.stringify(msg));
-    }
+    this.socket.send(JSON.stringify(msg));
+  }
 
-  // Handle username input.
+  // Handle username changes.
   changeUsername(input) {
-    let currentUser = '';
-
-    if (this.state.currentUser.name) {
-      currentUser = this.state.currentUser.name;
-    } else {
-      currentUser = "Anonymous";
-    }
+    let currentUser = this.usernameCheck(this.state.currentUser.name);
     let msg = {
       type: 'incomingNotification',
       username: 'System Admin',
@@ -92,6 +109,7 @@ class App extends Component {
     this.setState({currentUser: {name: input }});
   }
 
+  // Render app.
   render() {
     return (
       <div>

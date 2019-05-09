@@ -1,8 +1,13 @@
+/******************/
+/* GLOBAL IMPORTS */
+/******************/
 import React, {Component} from 'react';
 
+/********************/
+/* Navbar Component */
+/********************/
 class NavBar extends Component {
   render () {
-    console.log('props', this.props);
     return (
       <nav className="navbar">
         <a href="/" className="navbar-brand">Chatty</a>
