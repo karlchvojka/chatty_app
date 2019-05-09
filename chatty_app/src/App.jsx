@@ -85,7 +85,7 @@ class App extends Component {
   }
 
   /* Functions as Props */
-  
+
   // Handle message input
   addMessageItem(input) {
     let currentUser = this.usernameCheck(this.state.currentUser.name);
@@ -102,7 +102,7 @@ class App extends Component {
     let currentUser = this.usernameCheck(this.state.currentUser.name);
     let msg = {
       type: 'incomingNotification',
-      username: 'System Admin',
+      username: 'System Bot',
       content: `${currentUser} has changed their name to ${input}`
     }
     this.socket.send(JSON.stringify(msg));
