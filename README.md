@@ -1,7 +1,8 @@
 # Lighthouse Labs Project: Chatty App
 
 ## Screenshots
-!['Screenshot Of Homepage'](https://github.com/basktballer/TheWallMidterm/blob/master/docs/desktop-home.png)
+!['Screenshot Of Homepage'](https://github.com/karlchvojka/chatty_app/blob/master/docs/home.png)
+!['Screenshot Of Homepage2'](https://github.com/karlchvojka/chatty_app/blob/master/docs/home2.png)
 
 
 ## Getting Started
