@@ -32,14 +32,13 @@ wss.on('connection', (client) => {
 
   // Set number of clients for user count
   if(client) {
-    console.log('New Client Connected');
     const userCount = {
       count: wss.clients.size,
       type: 'userCount'
     }
     wss.broadcast(userCount);
   }
-  console.log('Client connected');
+  console.log('New Client connected');
 
   // Handle an incoming message.
   client.on('message', (incomingData) => {
