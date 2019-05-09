@@ -1,3 +1,6 @@
+/*******************/
+/* GLOBAL REQUIRES */
+/*******************/
 const express = require('express');
 const SocketServer = require('ws').Server;
 const uuidv1 = require('uuid/v1');
@@ -5,7 +8,9 @@ const uuidv1 = require('uuid/v1');
 // Set port
 const PORT = 3001;
 
-// Create a new express Server
+/*****************/
+/* Create Server */
+/*****************/
 const server = express()
   // make the express server serve static access (html, js, css) from the public folder
   .use(express.static('public'))
@@ -14,17 +19,18 @@ const server = express()
 // Create websockets Server
 const wss = new SocketServer({ server });
 
-// Set up a callback that will run when a client connects to the Server
-// When a client connects they are assigned a socket, represented by
-// the client paramater in the callback.
+/**********************/
+/* Handle Connections */
+/**********************/
 wss.on('connection', (client) => {
-  // Broadcast to all.
-  console.log(wss.clients.size);
+  // Broadcast messages to all clients.
   wss.broadcast = function broadcast(data) {
     wss.clients.forEach(function each(client) {
         client.send(JSON.stringify(data));
     });
   };
+
+  // Set number of clients for user count
   if(client) {
     console.log('New Client Connected');
     const userCount = {
@@ -35,29 +41,33 @@ wss.on('connection', (client) => {
   }
   console.log('Client connected');
 
-
-
+  // Handle an incoming message.
   client.on('message', (incomingData) => {
-    console.log(incomingData);
     const data = JSON.parse(incomingData);
-    console.log('data parsed', data)
+
+    // Handle server reaction based on message type.
     switch(data.type) {
+      // Handle a normal text message
       case 'incomingMessage':
         dataNew = {id: uuidv1(), type: data.type, username: data.username, content: data.content };
         wss.broadcast(dataNew)
         break;
+      // Handle a notification (Username Change)
       case 'incomingNotification':
         data.type = 'incomingNotification';
         wss.broadcast(data);
         break;
+      // Default/errors.
       default:
         throw new Error(`Unknown Event Type: ${data.type}`);
     }
 
   });
-  // Set up a callback for when a client closes a socket. This is usually means they closed their browser.
+
+  // Handle Client closing.
   client.on('close', () => {
     console.log('Client Disconnected');
+    // Change usercount on client close.
     const userCount = {
       count:wss.clients.size,
       type:'userCount'
