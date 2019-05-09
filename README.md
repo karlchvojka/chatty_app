@@ -1,5 +1,9 @@
 # Lighthouse Labs Project: Chatty App
 
+## Screenshots
+!['Screenshot Of Homepage'](https://github.com/basktballer/TheWallMidterm/blob/master/docs/desktop-home.png)
+
+
 ## Getting Started
 
 ### Prerequisites
