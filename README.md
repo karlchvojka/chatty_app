@@ -1,45 +1,74 @@
-React Boilerplate
-=====================
+# Lighthouse Labs Project: Chatty App
 
-A minimal and light dev environment for ReactJS.
+## Getting Started
 
-### Usage
-
-Clone the boilerplate and create your own git repo.
-
+### Prerequisites
+- NODEJS (v8.10.0)
 ```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
+sudo apt install nodejs
+```
+- NPM (v8.9.4)
+```
+sudo apt install npm
 ```
 
-Install the dependencies and start the server.
+### Installing
+Once you have NodeJS and NPM running, follow the instructions below:
 
-```
-npm install
-npm start
-open http://localhost:3000
-```
+#### NOTE: this app is in two parts. Follow carefully:
 
-### Static Files
+This will install the server and the app seperately. Be sure to do both.
 
-You can store static files like images, fonts, etc in the `build` folder.
+#### Install the app front end
+1. Clone this repository (do not fork)
+2. Enter the chatty_app folder (`cd chatty_app`)
+3. Run `npm install`
 
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
+#### Install the Server.
+1. Enter the chatty_server folder (`cd chatty_server`)
+2. Run `npm install`
 
-### Linting
 
-This boilerplate project includes React ESLint configuration.
+### Starting
+To start the app follow the instructions below. Be sure to do both, and be sure to have either or running in their own terminal window.
 
-```
-npm run lint
-```
+#### Start the Server
+1. Enter the chatty_server folder (`cd chatty_server`)
+2. Run `npm start`
 
-### Dependencies
+#### Start the App
+1. Enter the chatty_server folder (`cd chatty_app`)
+2. Run `npm start`
 
-* React
-* Webpack
-* [babel-loader](https://github.com/babel/babel-loader)
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+Visit `http://localhost:3000/`
+
+## Dependencies
+
+### App Dependencies:
+- Node 5.10.x or above
+- NPM 3.8.x or above
+- Babel Core 6.23.x or above
+- Babel Loader 6.3.x or above
+- Babel Presets:
+  - es2015 6.22.x or above
+  - react 6.23.x or above
+  - stage-0 6.22.x or above
+- CSS loader 0.26.x or above
+- Eslint 3.15.x or above
+- Eslint Plugin React 6.9.x or above
+- Node Sass 4.5.x or above
+- Sass Loader 6.0.x or above
+- Sockjs-client 1.1.x or above
+- Webpack 2.2.x or above
+- Webpack Dev Server 2.3.x or above.
+
+### Server Dependencies
+- Express 4.16.x or above
+- UUID 3.3.x or above
+- WS 7.0.x or above.
+
+## Upcoming Features
+1. Ability for users to set the color of their own username.
+2. Login abilities
+3. User ability to have profiles and change them.
+4. Encrypted passwords.
