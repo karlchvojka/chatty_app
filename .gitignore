@@ -1,4 +1,6 @@
-node_modules
+/chatty_app/node_modules
+/chatty_server/node_modules
+
 npm-debug.log
 .DS_Store
 dist
