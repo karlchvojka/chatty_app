@@ -1,7 +1,14 @@
 // This is the top-level scss file. Import all other files in here.
+
+// Import files
 @import 'home';
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700");
-    @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
+
+/*****************/
+/* Global styles */
+/*****************/
+
 body {
   background: white;
   color: black;
@@ -10,6 +17,35 @@ body {
   margin: 70px 0;
 }
 
+/*******************************/
+/* Individual component styles */
+/*******************************/
+
+// Navbar
+.navbar {
+  background: tomato;
+  border-bottom: 1px solid black;
+  height: 60px;
+  left: 0;
+  padding: 0 10px;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.navbar-brand {
+  color: inherit;
+  display: block;
+  float: left;
+  font-weight: 700;
+  font-size: 28px;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+// Chatbar
 .chatbar {
   background: tomato;
   border-top: 1px solid black;
@@ -39,6 +75,7 @@ body {
   flex: 2;
 }
 
+// Message
 .message {
   display: flex;
   padding: 5px;
@@ -65,29 +102,9 @@ body {
   font-weight: 700;
 }
 
-.navbar {
-  background: tomato;
-  border-bottom: 1px solid black;
-  height: 60px;
-  left: 0;
-  padding: 0 10px;
-  position: fixed;
-  right: 0;
-  top: 0;
-}
 
-.navbar-brand {
-  color: inherit;
-  display: block;
-  float: left;
-  font-weight: 700;
-  font-size: 28px;
-  height: 60px;
-  line-height: 60px;
-  padding: 0 10px;
-  text-decoration: none;
-}
 
+// Notification
 .notification span {
   font-style: italic;
   color: blue;
